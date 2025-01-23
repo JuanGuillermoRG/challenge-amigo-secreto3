@@ -270,8 +270,8 @@ button {
     }
 
     .input-name {
-        font-size: 14px; /* Reduce el tamaño del texto en el campo */
-        padding: 10px;
+        font-size: 16px;  /* Aumenta el tamaño del texto en el campo */
+        padding: 12px;    /* Aumenta el padding para hacer el campo más grande */
     }
 
     .button-container {
@@ -287,6 +287,12 @@ button {
         width: 100%; /* Botones toman todo el ancho disponible */
         max-width: 280px; /* Limita el ancho máximo */
         font-size: 14px; /* Reduce el tamaño de la fuente */
+    }
+
+    .button-add {
+        width: 100%;      /* Asegura que el botón ocupe todo el ancho */
+        max-width: 250px; /* Limita el ancho máximo del botón */
+        font-size: 14px;  /* Ajuste de tamaño de texto */
     }
 
     .name-list ul {
@@ -310,7 +316,6 @@ button {
         z-index: 1; /* Asegura que el texto quede sobre la imagen */
     }
 }
-
 
 
 
