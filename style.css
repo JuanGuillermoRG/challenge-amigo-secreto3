@@ -23,6 +23,13 @@ body {
     align-items: center;
 }
 
+.info-message {
+    text-align: center; /* Alinea el texto al centro */
+    margin-top: 10px;   /* Espacio entre los botones y el mensaje */
+    font-size: 18px;    /* Ajusta el tamaño de letra */
+    color: var(--color-primary);        /* Color del texto */
+}
+
 .main-content {
     display: flex;
     flex-direction: column;
@@ -337,11 +344,3 @@ button {
         z-index: 1; /* Asegura que el texto quede sobre la imagen */
     }
 }
-
-
-
-
-
-
-
-

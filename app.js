@@ -109,15 +109,3 @@ function reiniciarLista() {
     document.getElementById("listaAmigos").innerHTML = "";
     document.getElementById("resultado").innerHTML = "";
 }
-
-
-
-
-
-
-
-
-
-
-
-
