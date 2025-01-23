@@ -1,7 +1,5 @@
 let listaAmigos = [];
-let listaDisponible = [];
-let amigoActual; // Variable para almacenar al amigo actual (quien hace el sorteo)
-let intentosReintentar = 0; // Contador de intentos para el botón Reintentar
+let listaDisponible = []; // Lista temporal para los amigos restantes
 
 function agregarAmigo() {
     const input = document.getElementById("amigo");
@@ -68,14 +66,7 @@ function sortearAmigo() {
         return;
     }
 
-    amigoActual = listaAmigos[listaAmigos.length - 1]; // El último ingresado es quien hace el sorteo
-    let elegido;
-
-    // Asegurarnos de que no sea el mismo amigo
-    do {
-        elegido = listaDisponible[Math.floor(Math.random() * listaDisponible.length)];
-    } while (elegido === amigoActual); // Reintentar si es el mismo
-
+    const elegido = listaDisponible[Math.floor(Math.random() * listaDisponible.length)];
     listaDisponible = listaDisponible.filter(nombre => nombre !== elegido);
     const resultado = document.getElementById("resultado");
     resultado.innerHTML = `El amigo secreto que te tocó es: <strong>${elegido}</strong>`;
@@ -83,28 +74,10 @@ function sortearAmigo() {
     // Mostrar el nombre sorteado tachado
     mostrarAmigos();
 
-    // Mostrar el botón de reintentar
-    document.getElementById("reintentar").style.display = "inline-block";
-}
-
-function reintentarSortear() {
-    if (intentosReintentar >= 2) {
-        alert("Ya no puedes intentar más veces.");
-        return;
-    }
-
-    // Incrementar el contador de intentos
-    intentosReintentar++;
-
-    // Hacer que el último nombre sorteado vuelva a estar disponible
-    listaDisponible.push(amigoActual);
-
-    // Limpiar el resultado mostrado
-    const resultado = document.getElementById("resultado");
-    resultado.innerHTML = ""; 
-
-    // Llamar a la función de sorteo nuevamente
-    sortearAmigo();
+    // Ocultar el resultado después de 5 segundos
+    setTimeout(() => {
+        resultado.innerHTML = '';
+    }, 5000);
 }
 
 function reiniciarLista() {
@@ -118,7 +91,6 @@ function reiniciarLista() {
     listaDisponible = [];
     document.getElementById("listaAmigos").innerHTML = "";
     document.getElementById("resultado").innerHTML = "";
-    intentosReintentar = 0; // Resetear el contador de intentos
 }
 
 
