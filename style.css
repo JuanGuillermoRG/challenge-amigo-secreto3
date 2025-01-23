@@ -270,26 +270,41 @@ button {
     }
 
     .input-wrapper {
-        max-width: 90%; /* Ajusta el ancho a la pantalla móvil */
-        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 0; /* Elimina el espacio entre los elementos */
+        width: 100%;
+        max-width: 600px; /* Limita el tamaño máximo del contenedor */
     }
 
     .input-name {
-        font-size: 14px; /* Reduce el tamaño del texto en el campo */
-        padding: 10px;
+        font-size: 16px; /* Ajuste del tamaño del texto en el campo */
+        padding: 12px; /* Agranda el campo */
+        width: 85%; /* Hace que el campo ocupe un 85% del espacio disponible */
+        max-width: 250px; /* Limita el tamaño máximo para que se vea bien en móviles */
+        border-radius: 25px 0 0 25px; /* Borde solo para la izquierda */
+    }
+
+    .button-add {
+        font-size: 14px; /* Reduce el tamaño del texto del botón */
+        padding: 12px 20px; /* Ajusta el tamaño del botón */
+        width: 15%; /* Hace que el botón ocupe el 15% del espacio disponible */
+        min-width: 100px; /* Establece un ancho mínimo para el botón */
+        border-radius: 0 25px 25px 0; /* Borde solo para la derecha */
     }
 
     .button-container {
-        flex-direction: column; /* Coloca los botones en una columna */
-        gap: 10px; /* Añade espacio entre los botones */
-        width: 100%; /* Asegura que se ajuste al ancho */
+        display: flex;
+        justify-content: center;
+        gap: 10px; /* Espacio entre los botones */
+        width: 100%;
+        flex-direction: column; /* Los botones se colocan en columna */
         align-items: center; /* Centra los botones */
     }
 
     .button-draw,
-    .button-reset,
-    .button-add {
-        width: 100%; /* Botones toman todo el ancho disponible */
+    .button-reset {
+        width: 100%; /* Los botones toman todo el ancho disponible */
         max-width: 280px; /* Limita el ancho máximo */
         font-size: 14px; /* Reduce el tamaño de la fuente */
     }
@@ -315,6 +330,8 @@ button {
         z-index: 1; /* Asegura que el texto quede sobre la imagen */
     }
 }
+
+
 
 
 
