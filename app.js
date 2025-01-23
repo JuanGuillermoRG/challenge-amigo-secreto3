@@ -1,5 +1,7 @@
 let listaAmigos = [];
-let listaDisponible = []; // Lista temporal para los amigos restantes
+let listaDisponible = [];
+let amigoActual; // Variable para almacenar al amigo actual (quien hace el sorteo)
+let intentosReintentar = 0; // Contador de intentos para el botón Reintentar
 
 function agregarAmigo() {
     const input = document.getElementById("amigo");
@@ -66,13 +68,43 @@ function sortearAmigo() {
         return;
     }
 
-    const elegido = listaDisponible[Math.floor(Math.random() * listaDisponible.length)];
+    amigoActual = listaAmigos[listaAmigos.length - 1]; // El último ingresado es quien hace el sorteo
+    let elegido;
+
+    // Asegurarnos de que no sea el mismo amigo
+    do {
+        elegido = listaDisponible[Math.floor(Math.random() * listaDisponible.length)];
+    } while (elegido === amigoActual); // Reintentar si es el mismo
+
     listaDisponible = listaDisponible.filter(nombre => nombre !== elegido);
     const resultado = document.getElementById("resultado");
     resultado.innerHTML = `El amigo secreto que te tocó es: <strong>${elegido}</strong>`;
 
     // Mostrar el nombre sorteado tachado
     mostrarAmigos();
+
+    // Mostrar el botón de reintentar
+    document.getElementById("reintentar").style.display = "inline-block";
+}
+
+function reintentarSortear() {
+    if (intentosReintentar >= 2) {
+        alert("Ya no puedes intentar más veces.");
+        return;
+    }
+
+    // Incrementar el contador de intentos
+    intentosReintentar++;
+
+    // Hacer que el último nombre sorteado vuelva a estar disponible
+    listaDisponible.push(amigoActual);
+
+    // Limpiar el resultado mostrado
+    const resultado = document.getElementById("resultado");
+    resultado.innerHTML = ""; 
+
+    // Llamar a la función de sorteo nuevamente
+    sortearAmigo();
 }
 
 function reiniciarLista() {
@@ -86,7 +118,10 @@ function reiniciarLista() {
     listaDisponible = [];
     document.getElementById("listaAmigos").innerHTML = "";
     document.getElementById("resultado").innerHTML = "";
+    intentosReintentar = 0; // Resetear el contador de intentos
 }
+
+
 
 
 

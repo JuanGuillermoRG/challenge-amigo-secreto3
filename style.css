@@ -162,11 +162,15 @@ button {
     text-align: center;
 }
 
-/* Clase para los nombres tachados */
-.tachado {
-    text-decoration: line-through;
-    color: #888888; /* Puedes cambiar el color del texto tachado si lo deseas */
-}
+
+
+
+
+
+
+
+
+
 
 /* Nuevo estilo para el botón cuando se hace clic */
 .button-add.button-clicked {
@@ -343,8 +347,36 @@ button {
     }
 }
 
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
 
+.input-name {
+    margin-right: 10px; /* Espacio entre el campo de texto y el botón "Añadir" */
+    padding: 5px;
+}
 
+.button-add, .button-reintentar {
+    margin-left: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.button-reintentar {
+    background-color: #ffcc00;
+}
+
+#resultado {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#listaAmigos {
+    margin-top: 20px;
+    font-size: 16px;
+}
 
 
 
