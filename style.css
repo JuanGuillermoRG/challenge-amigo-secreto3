@@ -9,6 +9,24 @@
 }
 
 /* Estilos generales */
+
+/* Estilo para los botones de editar */
+.boton-editar {
+    padding: 3px 8px;  /* Reducir el tamaño del botón */
+    font-size: 10px;  /* Tamaño de texto más pequeño */
+    border: 1px solid #000;
+    border-radius: 15px;  /* Bordes redondeados */
+    cursor: pointer;
+    background-color: var(--color-tertiary);
+    color: var(--color-text);
+}
+
+.boton-editar:hover {
+    background-color: #d3d3d3; /* Color al pasar el ratón */
+}
+
+
+
 * {
     margin: 0;
     padding: 0;
@@ -344,3 +362,5 @@ button {
         z-index: 1; /* Asegura que el texto quede sobre la imagen */
     }
 }
+
+

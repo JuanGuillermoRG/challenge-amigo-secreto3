@@ -1,3 +1,4 @@
+
 let listaAmigos = [];
 let listaDisponible = [];
 let juegoEnCurso = false; // Nueva bandera para verificar si el juego ha comenzado
@@ -36,25 +37,55 @@ function mostrarAmigos() {
     const listaAmigosContainer = document.getElementById("listaAmigos");
     listaAmigosContainer.innerHTML = "";
 
-    const nombresPorColumna = 4;
-    const columnas = Math.ceil(listaAmigos.length / nombresPorColumna);
+    listaAmigos.forEach((amigo, index) => {
+        const li = document.createElement("li");
+        li.textContent = amigo;
 
-    for (let col = 0; col < columnas; col++) {
-        const ul = document.createElement("ul");
-        ul.style.display = "inline-block";
-        ul.style.margin = "0 10px";
-        ul.style.verticalAlign = "top";
-
-        for (let i = col * nombresPorColumna; i < (col + 1) * nombresPorColumna && i < listaAmigos.length; i++) {
-            const li = document.createElement("li");
-            li.textContent = listaAmigos[i];
-            if (!listaDisponible.includes(listaAmigos[i])) {
-                li.classList.add("tachado");
-            }
-            ul.appendChild(li);
+        if (!listaDisponible.includes(amigo)) {
+            li.classList.add("tachado");
         }
-        listaAmigosContainer.appendChild(ul);
+
+        // Botón para editar nombres
+        const editButton = document.createElement("button");
+        editButton.textContent = "Editar";
+        editButton.classList.add("boton-editar"); // Aplica la clase "boton-editar"
+        editButton.style.marginLeft = "10px";
+
+        // Deshabilitar el botón de editar si el juego está en curso
+        if (juegoEnCurso) {
+            editButton.disabled = true;
+        } else {
+            editButton.onclick = () => editarAmigo(index);
+        }
+
+        li.appendChild(editButton);
+        listaAmigosContainer.appendChild(li);
+    });
+}
+
+function editarAmigo(index) {
+    const nuevoNombre = prompt("Edita el nombre:", listaAmigos[index]);
+
+    if (!nuevoNombre) {
+        alert("El nombre no puede estar vacío.");
+        return;
     }
+
+    if (listaAmigos.includes(nuevoNombre) && listaAmigos[index] !== nuevoNombre) {
+        alert("Este nombre ya está en la lista.");
+        return;
+    }
+
+    const viejoNombre = listaAmigos[index];
+    listaAmigos[index] = nuevoNombre;
+
+    // Actualizar la lista disponible
+    const indexDisponible = listaDisponible.indexOf(viejoNombre);
+    if (indexDisponible !== -1) {
+        listaDisponible[indexDisponible] = nuevoNombre;
+    }
+
+    mostrarAmigos();
 }
 
 function sortearAmigo() {
@@ -90,22 +121,29 @@ function sortearAmigo() {
 
 function reiniciarLista() {
     if (listaAmigos.length === 0) {
-        alert("Por favor, ingresa al menos un nombre antes de reiniciar.");
+        alert("No hay ningún juego actualmente.");
         document.getElementById("amigo").focus();
         return;
     }
 
-    if (juegoEnCurso) {
+    // Confirmar reinicio si aún no se ha sorteado por primera vez
+    if (!juegoEnCurso) {
+        const confirmarReinicio = confirm("No se ha sorteado ningún amigo aún. ¿Estás seguro de que deseas reiniciar?");
+        if (!confirmarReinicio) {
+            return; // El usuario eligió no reiniciar
+        }
+    } else if (juegoEnCurso) {
         const confirmarReinicio = confirm("Juego en curso. ¿Estás seguro de que deseas reiniciar?");
-
         if (!confirmarReinicio) {
             return; // El usuario eligió no reiniciar
         }
     }
 
+    // Reiniciar las listas y los estados
     listaAmigos = [];
     listaDisponible = [];
     juegoEnCurso = false; // Reiniciar la bandera
     document.getElementById("listaAmigos").innerHTML = "";
     document.getElementById("resultado").innerHTML = "";
 }
+
