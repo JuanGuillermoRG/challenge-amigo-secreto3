@@ -193,60 +193,6 @@ button {
     background-color: #a1a1a1;  /* Un color de resalto, puedes cambiarlo a lo que prefieras */
 }
 
-/* Responsividad para celulares */
-@media screen and (max-width: 768px) {
-    .main-content {
-        width: 100%;
-        padding: 10px;
-    }
-
-    /* Banner */
-    .header-banner {
-        flex: 100%;
-        padding: 20px 0;
-    }
-
-    .main-title {
-        font-size: 36px;  /* Ajuste de tamaño en pantallas pequeñas */
-    }
-
-    /* Sección de entrada */
-    .input-section {
-        flex: 100%;
-        padding: 10px;
-    }
-
-    .section-title {
-        font-size: 24px;  /* Ajuste de tamaño en pantallas pequeñas */
-    }
-
-    .input-wrapper {
-        max-width: 100%;
-        padding: 5px;
-    }
-
-    .input-name {
-        font-size: 14px;  /* Ajuste de tamaño en pantallas pequeñas */
-        padding: 8px;
-    }
-
-    .button-container {
-        flex-direction: column;  /* Botones debajo uno del otro */
-        gap: 10px;
-    }
-
-    .button-draw,
-    .button-reset {
-        width: 100%;
-        max-width: 90%; /* Ajustar el tamaño del botón para que ocupe menos espacio */
-        font-size: 14px; /* Ajuste de tamaño de texto */
-    }
-
-    .button-add {
-        width: 100%;
-        font-size: 14px;
-    }
-}
 
 /* Responsividad para celulares */
 @media screen and (max-width: 768px) {
@@ -343,7 +289,8 @@ button {
 
     .name-list li {
         font-size: 16px;
-        text-align: center; /* Centra el texto dentro de cada celda */
+        text-align: left; /* Alinea el texto dentro de cada celda a la izquierda */
+        padding: 5px; /* Añade algo de espacio interior */
     }
 
     .result-list {
@@ -362,5 +309,4 @@ button {
         z-index: 1; /* Asegura que el texto quede sobre la imagen */
     }
 }
-
 
