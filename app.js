@@ -103,73 +103,6 @@ function editarAmigo(index) {
 }
 
 
-// function sortearAmigo() {
-//     const botonSortear = document.getElementById("btnSortear");
-
-//     if (listaAmigos.length < 2) {
-//         alert("Debes ingresar al menos dos amigos para poder sortear.");
-//         return; // No permite seguir si hay menos de dos amigos en la lista
-//     }
-
-//     if (listaAmigos.length === 0) {
-//         alert("Por favor, ingresa al menos un nombre antes de sortear.");
-//         document.getElementById("amigo").focus();
-//         return;
-//     }
-
-//     if (listaDisponible.length === 0) {
-//         alert("Ya no quedan amigos para sortear.");
-//         return;
-//     }
-
-//     const jugador = prompt("¿Quién está jugando ahora?, ingrese su nombre igual como esta en la lista").trim();
-//     if (!jugador) {
-//         alert("Debes ingresar el nombre del jugador actual.");
-//         document.getElementById("amigo").focus(); // Pone el foco en el campo de texto
-//         return;
-//     }
-
-//     const jugadorNormalizado = jugador.toLowerCase();
-//     if (!listaAmigos.some(amigo => amigo.toLowerCase() === jugadorNormalizado)) {
-//         alert("El jugador ingresado no está en la lista.");
-//         document.getElementById("amigo").focus(); // Pone el foco en el campo de texto
-//         return;
-//     }
-
-//     if (jugadorActual === jugadorNormalizado) {
-//         alert("Ya jugaste tu turno. No puedes jugar nuevamente.");
-//         document.getElementById("amigo").focus(); // Pone el foco en el campo de texto
-//         return;
-//     }
-
-//     juegoEnCurso = true;
-//     jugadorActual = jugadorNormalizado;
-
-//     let elegido;
-//     do {
-//         elegido = listaDisponible[Math.floor(Math.random() * listaDisponible.length)];
-//     } while (elegido.toLowerCase() === jugadorNormalizado);
-
-//     // Mostrar directamente el mensaje sin alerta
-//     const resultado = document.getElementById("resultado");
-//     resultado.innerHTML = `El amigo secreto que te tocó es: <strong>${elegido}</strong>`;
-//     mostrarAmigos();
-
-//     // Eliminar el elegido de la lista disponible
-//     listaDisponible = listaDisponible.filter(nombre => nombre !== elegido);
-
-//     // Bloquea el botón durante 5 segundos
-//     botonSortear.disabled = true;
-
-//     // Establece un temporizador para el mensaje y el botón
-//     setTimeout(() => {
-//         resultado.innerHTML = ""; // Elimina el mensaje después de 5 segundos
-//         botonSortear.disabled = false; // Vuelve a habilitar el botón
-//     }, 5000);
-// }
-
-
-
 function sortearAmigo() {
     const botonSortear = document.getElementById("btnSortear");
 
@@ -189,21 +122,21 @@ function sortearAmigo() {
         return;
     }
 
-    let jugador = prompt("¿Quién está jugando ahora?").trim();
+    let jugador = prompt("¿Quién está jugando ahora?, ingrese su nombre igual como esta en la lista de amigos.").trim();
     
     // Repetir la petición de nombre hasta que el jugador ingrese uno válido o decida salir
     while (jugador && !listaAmigos.some(amigo => amigo.toLowerCase() === jugador.toLowerCase())) {
         // Si el jugador ingresado no está en la lista, preguntamos si quiere seguir intentando o salir
-        const continuar = confirm("El jugador ingresado no está en la lista. ¿Quieres intentar de nuevo?");
+        const continuar = confirm("El jugador ingresado no está en la lista de amigos. ¿Quieres intentar de nuevo?");
         
         if (!continuar) {
-            alert("Has decidido salir. Busca tu nombre igual como esta en la lista.");
+            alert("Has decidido salir. busque su nombre igual como esta en la lista de amigos.");
             document.getElementById("amigo").focus(); // Pone el foco en el campo de texto para ingresar un nombre si se desea
             return; // Salimos de la función sin hacer nada más
         }
 
         // Si el jugador elige continuar, volvemos a pedir el nombre
-        jugador = prompt("¿Quién está jugando ahora?").trim();
+        jugador = prompt("¿Quién está jugando ahora?, ingrese su nombre igual como esta en la lista de amigos.").trim();
     }
 
     // Si el nombre está vacío, mostramos una alerta
