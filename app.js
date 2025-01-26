@@ -104,8 +104,8 @@ function editarAmigo(index) {
 function sortearAmigo() {
     const botonSortear = document.getElementById("btnSortear");
 
-    if (listaAmigos.length < 2) {
-        alert("Debes ingresar al menos dos amigos para poder sortear.");
+    if (listaAmigos.length < 3) {
+        alert("Debes ingresar al menos tres amigos para poder sortear.");
         return; // No permite seguir si hay menos de dos amigos en la lista
     }
 
