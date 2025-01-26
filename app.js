@@ -102,6 +102,9 @@ function editarAmigo(index) {
 
 function sortearAmigo() {
     const botonSortear = document.getElementById("btnSortear");
+    const botonNuevoIntento = document.querySelector(".button-reset");
+    const botonInstrucciones = document.querySelector(".button-instructions");
+    const botonAñadir = document.querySelector(".button-add");
 
     if (listaAmigos.length < 2) {
         alert("Debes ingresar al menos dos amigos para poder sortear.");
@@ -183,11 +186,19 @@ function sortearAmigo() {
 
     listaDisponible = listaDisponible.filter(nombre => nombre !== elegido);
 
+    // Desactiva los botones mientras se muestra el mensaje
     botonSortear.disabled = true;
+    botonNuevoIntento.disabled = true;
+    botonInstrucciones.disabled = true;
+    botonAñadir.disabled = true;
 
     setTimeout(() => {
         resultado.innerHTML = "";
+        // Reactiva los botones después de 5 segundos
         botonSortear.disabled = false;
+        botonNuevoIntento.disabled = false;
+        botonInstrucciones.disabled = false;
+        botonAñadir.disabled = false;
     }, 5000);
 }
 
@@ -233,6 +244,7 @@ function cerrarInstrucciones() {
     instrucciones.style.display = "none"; 
     document.getElementById("amigo").focus();
 }
+
 
 
 
