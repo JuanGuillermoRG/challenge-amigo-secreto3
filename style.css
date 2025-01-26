@@ -41,6 +41,8 @@ body {
     align-items: center;
 }
 
+
+
 .info-message {
     text-align: center; /* Alinea el texto al centro */
     margin-top: 10px;   /* Espacio entre los botones y el mensaje */
@@ -192,6 +194,72 @@ button {
 .button-add.button-clicked {
     background-color: #a1a1a1;  /* Un color de resalto, puedes cambiarlo a lo que prefieras */
 }
+
+.justificado {
+    text-align: justify; /* Justifica el texto */
+    text-align-last: justify; /* Justifica la última línea */
+    width: 80%; /* Ajusta el ancho según sea necesario */
+    margin: 0 auto; /* Centra el contenedor */
+}
+
+
+
+/* Estilo para el botón Instrucciones */
+.button-instructions {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 25px;
+    background-color: var(--color-button);
+    color: var(--color-white);
+    cursor: pointer;
+    width: 160px;
+    margin: 10px 0;
+}
+
+.button-instructions:hover {
+    background-color: var(--color-button-hover); /* Efecto hover */
+}
+
+
+/* Estilo para el contenedor de instrucciones */
+.instrucciones-container {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro transparente */
+    justify-content: center;
+    align-items: center;
+}
+
+.instrucciones-contenido {
+    background-color: var(--color-white);
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.button-aceptar {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--color-button);
+    color: var(--color-white);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.button-aceptar:hover {
+    background-color: var(--color-button-hover);
+}
+
+
 
 
 /* Responsividad para celulares */
