@@ -261,7 +261,6 @@ button {
 
 
 
-
 /* Responsividad para celulares */
 @media screen and (max-width: 768px) {
     .main-content {
@@ -375,6 +374,51 @@ button {
     .header-banner .main-title {
         position: relative;
         z-index: 1; /* Asegura que el texto quede sobre la imagen */
+    }
+
+    /* Instrucciones */
+    #instrucciones {
+        display: none; /* Asegúrate de que las instrucciones estén ocultas por defecto */
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8); /* Aumenta la opacidad del fondo semitransparente */
+        color: #fff;
+        padding: 20px;
+        overflow-y: auto; /* Permite desplazamiento vertical */
+        z-index: 1000; /* Asegúrate de que las instrucciones estén por encima de otros elementos */
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    #instrucciones p {
+        margin: 10px 0;
+        font-size: 18px;
+        line-height: 1.5; /* Mejora la legibilidad con un mayor espacio entre líneas */
+    }
+
+    #instrucciones button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        border-radius: 5px;
+    }
+
+    @media (max-width: 600px) {
+        #instrucciones {
+            padding: 10px; /* Reducimos el padding en pantallas pequeñas */
+            font-size: 16px; /* Ajustamos el tamaño de la fuente */
+        }
+
+        #instrucciones p {
+            font-size: 16px; /* Ajustamos el tamaño de los párrafos en pantallas pequeñas */
+        }
     }
 }
 
