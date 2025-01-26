@@ -1,7 +1,7 @@
 let listaAmigos = [];
 let listaDisponible = [];
 let juegoEnCurso = false;
-let jugadorActual = null; // Guarda quién está jugando actualmente
+let jugadorActual = null;
 
 function agregarAmigo() {
     const input = document.getElementById("amigo");
@@ -30,7 +30,7 @@ function agregarAmigo() {
     listaAmigos.push(nombre);
     listaDisponible.push(nombre);
     input.value = "";
-    input.focus(); // Vuelve a poner el foco en el input
+    input.focus();
 
     mostrarAmigos();
 }
@@ -66,14 +66,14 @@ function mostrarAmigos() {
 function editarAmigo(index) {
     const nuevoNombre = prompt("Edita el nombre:", listaAmigos[index]);
 
-    if (nuevoNombre === null) { // Si el usuario cancela la edición
-        document.getElementById("amigo").focus(); // Restablece el foco al campo de texto
+    if (nuevoNombre === null) { 
+        document.getElementById("amigo").focus();
         return;
     }
 
     if (!nuevoNombre) {
         alert("El nombre no puede estar vacío.");
-        document.getElementById("amigo").focus(); // Asegura que el foco esté en el campo de texto si el nombre está vacío
+        document.getElementById("amigo").focus();
         return;
     }
 
@@ -84,7 +84,7 @@ function editarAmigo(index) {
         )
     ) {
         alert("Este nombre ya está en la lista.");
-        document.getElementById("amigo").focus(); // Restablece el foco si el nombre ya está en la lista
+        document.getElementById("amigo").focus();
         return;
     }
 
@@ -97,16 +97,15 @@ function editarAmigo(index) {
     }
 
     mostrarAmigos();
-    document.getElementById("amigo").focus(); // Asegura que el foco esté en el campo de texto después de editar
+    document.getElementById("amigo").focus();
 }
 
-// Función para sortear el amigo secreto
 function sortearAmigo() {
     const botonSortear = document.getElementById("btnSortear");
 
-    if (listaAmigos.length < 3) {
-        alert("Debes ingresar al menos tres amigos para poder sortear.");
-        return; // No permite seguir si hay menos de dos amigos en la lista
+    if (listaAmigos.length < 2) {
+        alert("Debes ingresar al menos dos amigos para poder sortear.");
+        return;
     }
 
     if (listaAmigos.length === 0) {
@@ -122,41 +121,38 @@ function sortearAmigo() {
 
     let jugador = prompt("¿Quién está jugando ahora?, ingrese su nombre igual como esta en la lista de amigos.").trim();
 
-    // Repetir la petición de nombre hasta que el jugador ingrese uno válido o decida salir
     while (!jugador) {
-        // Si el jugador no ingresa nada, preguntamos si quiere intentar de nuevo o salir
         const continuar = confirm("No has ingresado un nombre. ¿Quieres intentarlo de nuevo?");
         
         if (!continuar) {
-            return; // Salimos de la función si decide salir
+            alert("Has decidido salir.");
+            return;
         }
 
         jugador = prompt("¿Quién está jugando ahora?, ingrese su nombre igual como esta en la lista de amigos.").trim();
     }
 
     while (jugador && !listaAmigos.some(amigo => amigo.toLowerCase() === jugador.toLowerCase())) {
-        // Si el jugador ingresado no está en la lista, preguntamos si quiere seguir intentando o salir
         const continuar = confirm("El jugador ingresado no está en la lista de amigos. ¿Quieres intentar de nuevo?");
         
         if (!continuar) {
-            return; // Salimos de la función sin hacer nada más
+            alert("Has decidido salir.");
+            return;
         }
 
-        // Si el jugador elige continuar, volvemos a pedir el nombre
         jugador = prompt("¿Quién está jugando ahora?, ingrese su nombre igual como esta en la lista de amigos.").trim();
     }
 
-    // Si el nombre está vacío, mostramos una alerta
     if (!jugador) {
         alert("Debes ingresar el nombre del jugador actual.");
-        document.getElementById("amigo").focus(); // Pone el foco en el campo de texto
+        document.getElementById("amigo").focus();
         return;
     }
 
     const jugadorNormalizado = jugador.toLowerCase();
     if (jugadorActual === jugadorNormalizado) {
         alert("Ya jugaste tu turno. No puedes jugar nuevamente.");
-        document.getElementById("amigo").focus(); // Pone el foco en el campo de texto
+        document.getElementById("amigo").focus();
         return;
     }
 
@@ -167,57 +163,51 @@ function sortearAmigo() {
     let intentoFallido = false;
 
     do {
-        // Si solo hay un jugador y el elegido es el mismo, reiniciamos el sorteo
         if (listaDisponible.length === 1 && listaDisponible[0].toLowerCase() === jugadorNormalizado) {
-            alert("Te ha salido tu propio nombre. Reiniciando el sorteo, elijan todos nuevamente por favor...");
-            reiniciarLista();  // Llamamos a la función de reinicio
-            return;  // Terminamos la ejecución de esta función
+            alert("Te a tocado tu propio nombre, avisale a tus amigos que elijan de nuevo. Reiniciando el sorteo...");
+            listaDisponible = [...listaAmigos];
+            return;  // Terminamos aquí sin reiniciar el sorteo completo
         }
 
         elegido = listaDisponible[Math.floor(Math.random() * listaDisponible.length)];
 
-        // Si el elegido es el mismo que el jugador, marcamos como fallo
         if (elegido.toLowerCase() === jugadorNormalizado) {
             intentoFallido = true;
         }
-    } while (intentoFallido); // Repetimos hasta que el jugador no se saque a sí mismo
+    } while (intentoFallido);
 
-    // Mostrar directamente el mensaje sin alerta
     const resultado = document.getElementById("resultado");
-    resultado.innerHTML = `El Amigo Secreto que te tocó es: <strong>${elegido}</strong>`;
+    resultado.innerHTML = `El amigo secreto que te tocó es: <strong>${elegido}</strong>`;
+
     mostrarAmigos();
 
-    // Eliminar el elegido de la lista disponible
     listaDisponible = listaDisponible.filter(nombre => nombre !== elegido);
 
-    // Bloquea el botón durante 5 segundos
     botonSortear.disabled = true;
 
-    // Establece un temporizador para el mensaje y el botón
     setTimeout(() => {
-        resultado.innerHTML = ""; // Elimina el mensaje después de 5 segundos
-        botonSortear.disabled = false; // Vuelve a habilitar el botón
-        document.getElementById("amigo").focus(); // Devuelve el foco al input
+        resultado.innerHTML = "";
+        botonSortear.disabled = false;
     }, 5000);
 }
 
 function reiniciarLista() {
     if (listaAmigos.length === 0) {
         alert("No hay ningún juego actualmente.");
-        document.getElementById("amigo").focus(); // Asegura que el foco esté en el campo de texto
+        document.getElementById("amigo").focus();
         return;
     }
 
     if (!juegoEnCurso) {
         const confirmarReinicio = confirm("No se ha sorteado ningún amigo aún. ¿Estás seguro de que deseas reiniciar?");
         if (!confirmarReinicio) {
-            document.getElementById("amigo").focus(); // Restablece el foco si se cancela
+            document.getElementById("amigo").focus();
             return;
         }
     } else if (juegoEnCurso) {
         const confirmarReinicio = confirm("Juego en curso. ¿Estás seguro de que deseas reiniciar?");
         if (!confirmarReinicio) {
-            document.getElementById("amigo").focus(); // Restablece el foco si se cancela
+            document.getElementById("amigo").focus();
             return;
         }
     }
@@ -229,20 +219,27 @@ function reiniciarLista() {
     document.getElementById("listaAmigos").innerHTML = "";
     document.getElementById("resultado").innerHTML = "";
 
-    document.getElementById("amigo").focus(); // Asegura que el foco esté en el campo de texto al reiniciar
+    document.getElementById("amigo").focus();
 }
 
 function mostrarInstrucciones() {
     const instrucciones = document.getElementById("instrucciones");
-    instrucciones.style.display = "flex";  // Muestra el contenedor de instrucciones
-    document.getElementById("amigo").blur();  // Elimina el foco del campo de texto
+    instrucciones.style.display = "flex"; 
+    document.getElementById("amigo").blur();
 }
 
 function cerrarInstrucciones() {
     const instrucciones = document.getElementById("instrucciones");
-    instrucciones.style.display = "none";  // Oculta el contenedor de instrucciones
-    document.getElementById("amigo").focus();  // Devuelve el foco al campo de texto
+    instrucciones.style.display = "none"; 
+    document.getElementById("amigo").focus();
 }
+
+
+
+
+
+
+
 
 
 

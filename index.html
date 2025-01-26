@@ -21,7 +21,7 @@
         </header>
 
         <section class="input-section">
-            <h2 class="section-title">Digite el nombre de sus amigos</h2>
+            <h2 class="section-title">Ingrese el nombre de sus amigos</h2>
             <div class="input-wrapper">
                 <input type="text" id="amigo" class="input-name" placeholder="Escribe un nombre" autocomplete="off">
                 <button class="button-add" onclick="agregarAmigo()">Añadir</button>
@@ -33,15 +33,13 @@
             <div class="button-container">
                 <button id="btnSortear" class="button-draw" onclick="sortearAmigo()" aria-label="Sortear amigo secreto">
                     <img src="assets/play_circle_outline.png" alt="Ícono para sortear">
-                    Sortear amigo
+                    Sortear Amigo
                 </button>
                 <button class="button-reset" onclick="reiniciarLista()" aria-label="Empezar nuevamente">
                     <img src="assets/reiniciar.png" alt="Ícono de reinicio">
-                    Nuevo intento
+                    Nuevo Intento
                 </button>
             </div>
-
-
             </div>
             <button class="button-instructions" onclick="mostrarInstrucciones()">Instrucciones</button>
             <div id="instrucciones" class="instrucciones-container">
@@ -59,8 +57,8 @@
                         presionar Aceptar, aparecerá el nombre de tu Amigo Secreto con el mensaje:<strong>"El Amigo Secreto que te tocó es:</strong> 
                         _______________". No olvides el nombre que te tocó, debido a que este desaparecerá después de 5 segundos. Cuando el nombre desaparezca, 
                         pasa el celular al siguiente participante y se repite el proceso. Si hay muy pocos participantes, existe la posibilidad de 
-                        que al último jugador le toque su mismo nombre. Si esto ocurre, el juego se reiniciará y deberás empezar de nuevo. 
-                        Recuerda que los nombres están siendo sorteados al azar.
+                        que al último jugador le toque su mismo nombre. Si esto ocurre, el sorteo debe realizarse nuevamente, cada uno debera a repetir el proceso, 
+                        Recuerda que los nombres están siendo sorteados al azar y que el ultimo saque su propio nombre es una posibilidad.
                     </div>
 
                     <button class="button-aceptar" onclick="cerrarInstrucciones()">Aceptar</button>
