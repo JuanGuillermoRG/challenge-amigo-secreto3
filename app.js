@@ -325,6 +325,13 @@ function cerrarInstrucciones() {
     document.getElementById("amigo").focus();  // Devuelve el foco al campo de texto
 }
 
+document.querySelector('.button-instructions').addEventListener('click', function() {
+    document.querySelector('.instrucciones-container').style.display = 'flex';
+});
+
+document.querySelector('.button-aceptar').addEventListener('click', function() {
+    document.querySelector('.instrucciones-container').style.display = 'none';
+});
 
 
 

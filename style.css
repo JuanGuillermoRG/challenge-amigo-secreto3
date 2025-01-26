@@ -383,7 +383,7 @@ button {
 
     /* Contenedor de instrucciones */
     .instrucciones-container {
-        display: flex;
+        display: none;
         position: fixed;
         top: 0;
         left: 0;
